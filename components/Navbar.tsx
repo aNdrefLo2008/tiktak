@@ -40,9 +40,9 @@ function Navbar() {
             </Link>
             {userProfile.image && (
               <Link href="/">
-                <div>
+                <>
                   <Image width={34} height={34} className='rounded-full cursor-pointer' src={userProfile.image} alt="profile photo"/>
-                </div>
+                </>
               </Link>
             )}
             <button onClick={() => {
