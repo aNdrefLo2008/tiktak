@@ -83,8 +83,8 @@ function Upload() {
                     ) : (
                         <div>
                             {videoAsset ? (
-                                <div>
-                                    <video className='rounded-xl h-[450px] mt-16 bg-black' loop controls src={videoAsset.url}>
+                                <div className='w-[300px] p-4 flex justify-center'>
+                                    <video className='rounded-xl h-[462px] bg-black' loop controls src={videoAsset.url}>
 
                                     </video>
                                 </div>
