@@ -10,6 +10,7 @@ import { client } from '../utils/utils/client'
 
 import { topics } from '../utils/utils/constants'
 import { userLikedPostsQuery } from '../utils/utils/queries'
+import { BASE_URL } from '../utils/utils'
 
 function Upload() {
     const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +64,7 @@ function Upload() {
                 topic: category
             }
 
-            await axios.post(`http://localhost:3000/api/post`, document);
+            await axios.post(`${BASE_URL}/api/post`, document);
 
             router.push('/')
         }
