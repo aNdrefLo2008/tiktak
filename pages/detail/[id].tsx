@@ -10,6 +10,8 @@ import axios from 'axios'
 import { BASE_URL } from '../../utils/utils'
 import { Video } from '../../types'
 import useAuthStore from '../../store/authStore'
+import LikeButton from '../../components/LikeButton'
+import Comments from '../../components/Comments'
 
 interface IProps {
   postDetails: Video,
@@ -21,8 +23,10 @@ const Detail = ({ postDetails }: IProps) => {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
+  const [comment, setComment] = useState('')
+  const [isPostingComment, setIsPostingComment] = useState(false)
 
-  const { userProfile } = useAuthStore();
+  const { userProfile }: any = useAuthStore();
 
   const onVideoClick = () => {
     if(playin) {
@@ -41,6 +45,35 @@ const Detail = ({ postDetails }: IProps) => {
   }, [post, isVideoMuted])
 
   if(!post) return null;
+
+  const handleLike = async (like: boolean) => {
+    if(userProfile) {
+      const { data } = await axios.put(`${BASE_URL}/api/like`, {
+        userId: userProfile._id,
+        postId: post._id,
+        like
+      })
+
+      setPost({ ...post, likes: data.likes })
+    }
+  }
+
+  const addComment = async (e) => {
+    e.preventDefault();
+
+    if(userProfile && comment) {
+      setIsPostingComment(true)
+
+      const { data } = await axios.put(`${BASE_URL}/api/post/${post._id}`, {
+        userId: userProfile._id,
+        comment
+      });
+
+      setPost({ ...post, comments: data.comments })
+      setComment('');
+      setIsPostingComment(false)
+    }
+  }
 
   return (
     <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
@@ -111,10 +144,10 @@ const Detail = ({ postDetails }: IProps) => {
 
             <div className='mt-10 px-10'>
               {userProfile && (
-                <LikeButton />
+                <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
               )}
             </div>
-            <Comment />
+            <Comments comments={post.comments} comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment}/>
         </div>
       </div>
     </div>
