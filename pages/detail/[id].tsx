@@ -58,7 +58,7 @@ const Detail = ({ postDetails }: IProps) => {
     }
   }
 
-  const addComment = async (e) => {
+  const addComment = async (e: any) => {
     e.preventDefault();
 
     if(userProfile && comment) {
@@ -142,7 +142,7 @@ const Detail = ({ postDetails }: IProps) => {
           </div>
             <p className='px-10 text-md text-gray-600 mt-2 text-lg'>{post.caption}</p>
 
-            <div className='mt-10 px-10'>
+            <div className='my-10 px-10'>
               {userProfile && (
                 <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
               )}
