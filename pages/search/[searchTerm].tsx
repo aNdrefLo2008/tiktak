@@ -37,7 +37,7 @@ function SearchPage({ videos }: { videos: Video[] }) {
           {searchedAccounts.length > 0 ? (
             searchedAccounts.map((user: IUser, idx: number) => (
               <Link key={idx} href={`/profile/${user._id}`}>
-                <div className=' flex gap-3 p-2 cursor-pointer font-semibold rounded border-b-2 border-gray-200'>
+                <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded border-b-2 border-gray-200'>
                   <div>
                     <Image width={50} height={50} className='rounded-full' alt='user-profile' src={user.image}/>
                   </div>
