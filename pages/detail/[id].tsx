@@ -147,7 +147,13 @@ const Detail = ({ postDetails }: IProps) => {
                 <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
               )}
             </div>
-            <Comments comments={post.comments} comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment}/>
+            <Comments
+                comment={comment}
+                setComment={setComment}
+                addComment={addComment}
+                comments={post.comments}
+                isPostingComment={isPostingComment}
+              />
         </div>
       </div>
     </div>

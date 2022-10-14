@@ -19,7 +19,7 @@ interface IComment {
     comment: string;
     length?: number;
     _key: string;
-    postedBy: { _ref: string, _id: string }
+    postedBy: { _ref?: string; _id?: string };
 }
 
 function Comments({ comment, setComment, addComment, comments, isPostingComment }: IProps) {
