@@ -75,6 +75,7 @@ const Detail = ({ postDetails }: IProps) => {
     }
   }
 
+  
   return (
     <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
       <div className='relative w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center'>
