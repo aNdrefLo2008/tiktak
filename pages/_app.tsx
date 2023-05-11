@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import { Analytics } from '@vercel/analytics/react';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isSSR, setIsSSR] = useState(true)
@@ -16,6 +17,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}>
+      <Analytics />
       <div className='xl:w-[1200px] m-auto overflow-hidden h-full'>
         <Navbar /> 
         <div className='flex gap-6 md:gap-20'>

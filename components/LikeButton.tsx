@@ -14,6 +14,7 @@ function LikeButton({ likes, handleLike, handleDislike }: IProps) {
     const { userProfile }: any = useAuthStore()
     const filterLikes = likes?.filter(item => item._ref === userProfile?._id)
 
+    console.log(likes)
     useEffect(() => {
         if(filterLikes?.length > 0) {
             setAlreadyLiked(true);
